@@ -1,7 +1,13 @@
 const express = require("express");
-const { signUp, signIn } = require("../controllers/authController");
+const {
+  signUp,
+  signIn,
+  getUserProfile,
+} = require("../controllers/authController");
+const authMiddleWare = require("../middleware/authMiddleware");
 const route = express.Router();
 route.post("/signup", signUp);
 route.post("/signin", signIn);
+route.get("/profile", authMiddleWare, getUserProfile);
 module.exports = route;
 // +srv://chatApp:ycwxcTArOjMViARI@cluster0.hppyt.mongodb.net/chatApp?appName=Cluster0

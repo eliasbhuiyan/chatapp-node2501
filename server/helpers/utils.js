@@ -6,7 +6,7 @@ const generateAccessToken = (user) => {
       email: user.email,
     },
     process.env.JWT_SEC,
-    { expiresIn: "1h" },
+    { expiresIn: "2h" },
   );
 };
 const generateRefreshToken = (user) => {

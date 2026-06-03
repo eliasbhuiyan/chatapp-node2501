@@ -64,6 +64,7 @@ const sendMessage = async (req, res) => {
       conversation,
       sender: req.user._id,
     });
+    global.io.to(conversation).emit("new_message", message);
     res.status(200).send("sent");
   } catch (error) {
     console.log(error);

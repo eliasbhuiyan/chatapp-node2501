@@ -1,4 +1,7 @@
-const { generateAccessToken, generateRefreshToken } = require("../helpers/utils");
+const {
+  generateAccessToken,
+  generateRefreshToken,
+} = require("../helpers/utils");
 const userSchema = require("../models/userSchema");
 
 const signUp = async (req, res) => {
@@ -57,4 +60,17 @@ const signIn = async (req, res) => {
   }
 };
 
-module.exports = { signUp, signIn };
+const getUserProfile = async (req, res) => {
+  try {
+    const userProfile = await userSchema
+      .findById(req.user._id)
+      .select("-password");
+    if (!userProfile) res.status(400).send({ message: "Invalid Request" });
+
+    return res.status(200).send(userProfile);
+  } catch (error) {
+    return res.status(400).send({ message: "Server Error" });
+  }
+};
+
+module.exports = { signUp, signIn, getUserProfile };
