@@ -4,7 +4,9 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const app = express();
 const httpServer = createServer(app);
-const io = require("socket.io")(httpServer);
+const io = require("socket.io")(httpServer, {
+  cors: ['http://localhost:5173']
+});
 global.io = io;
 
 app.use(express.json());

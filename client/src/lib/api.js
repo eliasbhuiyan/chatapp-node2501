@@ -19,7 +19,17 @@ export const apiSlice = createApi({
     getConversations: builder.query({
       query: () => "/conv/list",
     }),
+    getMessages: builder.query({
+      query: (convId) => `/conv/getmessages/${convId}`,
+    }),
+    sendMessage: builder.mutation({
+      query: (messageData) => ({
+        url: "/conv/sendmessage",
+        method: "POST",
+        body: messageData,
+      }),
+    }),
   }),
 });
 
-export const { useGetConversationsQuery, useLoginMutation, useGetProfileQuery } = apiSlice;
+export const { useGetConversationsQuery, useLoginMutation, useGetProfileQuery, useLazyGetMessagesQuery, useSendMessageMutation } = apiSlice;

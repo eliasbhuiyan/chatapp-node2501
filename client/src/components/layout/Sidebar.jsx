@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ConversationItems from "../ui/ConversationItems";
 import { useGetConversationsQuery } from "../../lib/api";
+import { socket } from "../../lib/socketApi";
 
 const Sidebar = ({ profile }) => {
-  console.log(profile);
   const { data, isFetching } = useGetConversationsQuery();
-  console.log(data);
 
+
+  useEffect(() => {
+    if (data) {
+      data.forEach(conv => {
+        socket.emit("join_room", conv._id)
+      });
+    }
+  }, [data])
   return (
     <div className="h-screen w-full max-w-52 flex flex-col text-white p-5 bg-blue-600">
       <h1 className="font-bold text-2xl">ChatAPP</h1>

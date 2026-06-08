@@ -20,7 +20,9 @@ const Login = () => {
         return console.log(res.error.data.message);
       }
       console.log(res.data.message);
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 0);
     } catch (error) {
       console.log(error);
     }

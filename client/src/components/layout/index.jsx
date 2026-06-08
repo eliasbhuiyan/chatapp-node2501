@@ -12,11 +12,10 @@ const Layout = () => {
       </div>
     );
   }
-  console.log(data);
-
   if (!data) {
-    <Navigate to="/login" />;
+    return <Navigate to="/login" />;
   }
+  
   return (
     <div className="flex gap-5">
       <Sidebar profile={data} />
