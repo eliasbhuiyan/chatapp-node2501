@@ -5,7 +5,7 @@ import { addMessage } from '../slices/messagesSlice';
 let socket;
 
 const initSocket = () => {
-    socket = io.connect("http://localhost:8000")
+    socket = io.connect("https://chatapp-node2501.onrender.com")
 
     socket.on("new_message", (res) => {
         store.dispatch(addMessage(res))
