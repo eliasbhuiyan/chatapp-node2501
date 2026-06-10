@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 const httpServer = createServer(app);
 const io = require("socket.io")(httpServer, {
-  cors: ['http://localhost:5173']
+  cors: [process.env.CLIENT_URL],
 });
 global.io = io;
 
@@ -25,7 +25,7 @@ io.on("connection", (socket) => {
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
-    credentials: true
+    credentials: true,
   }),
 );
 app.use(route);
