@@ -31,7 +31,7 @@ const signUp = async (req, res) => {
 const cookie_config = {
   httpOnly: true, // Not accessible by client-side JS
   secure: true, // Only sent over HTTPS
-  // sameSite: 'Strict' // Only send for same-site requests
+  sameSite: 'none' // Only send for same-site requests
 };
 
 const signIn = async (req, res) => {
